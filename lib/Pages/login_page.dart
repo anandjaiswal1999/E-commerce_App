@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -57,13 +58,44 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 60.0,
                     ),
-                    ElevatedButton(
-                      child: Text("Login"),
-                      style: TextButton.styleFrom(minimumSize: Size(250, 50)),
-                      onPressed: () {
+                    // ElevatedButton(
+                    //   child: Text("Login"),
+                    //   style: TextButton.styleFrom(minimumSize: Size(150, 50)),
+                    //   onPressed: () {
+                    //     Navigator.pushNamed(context, MyRoutes.HomeRoute);
+                    //   },
+
+                    // ),
+                    InkWell(
+                      onTap: () async {
+                        setState(() {
+                          changeButton = true;
+                        });
+                        await Future.delayed(Duration(seconds: 2));
                         Navigator.pushNamed(context, MyRoutes.HomeRoute);
                       },
-                      
+                      child: AnimatedContainer(
+                        duration: Duration(seconds: 2),
+                        width: changeButton ? 50 : 150,
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: changeButton
+                            ? Icon(Icons.done, color: Colors.white)
+                            : Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                        decoration: BoxDecoration(
+                          color: Colors.lightGreen,
+                          // shape: changeButton? BoxShape.circle:BoxShape.rectangle
+                          borderRadius:
+                              BorderRadius.circular(changeButton ? 50 : 8),
+                        ),
+                      ),
                     ),
                   ],
                 ),
