@@ -6,6 +6,7 @@ class Mydrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String url = "https://media-exp1.licdn.com/dms/image/C4E03AQFU-7MLIvPToQ/profile-displayphoto-shrink_400_400/0/1617064593342?e=1661990400&v=beta&t=0GrwLYPLjdAXI5xH0UNPlwj4J9SvCusbASXb4gTvVws";
     return Drawer(
       child: Container(
         color: Colors.lightGreen,
@@ -17,7 +18,10 @@ class Mydrawer extends StatelessWidget {
                 margin: EdgeInsets.zero,
                 accountName: const Text("Anand Jaiswal"),
                 accountEmail: const Text("anandjaiswal@gmail.com"),
-                currentAccountPicture: Image.asset("assets/images/aj.png")
+                currentAccountPicture: CircleAvatar(
+                  
+                  backgroundImage: NetworkImage(url),
+                ),
               ),
             ),
             const ListTile(
